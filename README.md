@@ -5,10 +5,12 @@
 <p align="left">
   <img width="375" height="675" src="resource/home.png"/>
 </p>
-#使用须知
-将CHSocialService文件夹拖拽至工程中,import "CHSocialService.h"文件
-info 配置参考和额外导入的framework 参照Demo工程
-第三方授权需要拿到回调必须在AppDelegate文件中重写如下方法
+#使用须知需要注意以下几点:
+1.将CHSocialService文件夹拖拽至工程中,import "CHSocialService.h"文件
+
+2.info 配置参考和额外导入的framework参照Demo工程
+
+3.第三方授权需要拿到回调必须在AppDelegate文件中重写如下方法
 ```objc
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
