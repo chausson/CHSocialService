@@ -2,7 +2,7 @@
 解耦第三方的快速分享和第三方授权登录的类库，目前版本基于UMengSocial5.0
 
 #DEMO 演示
-<p align="center">
+<p align="left">
   <img width="375" height="675" src="resource/home.png"/>
 </p>
 #使用须知
