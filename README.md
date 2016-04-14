@@ -3,7 +3,7 @@
 
 #DEMO 演示
 <p align="center">
-  <img width="520" height="536" src="resource/home.png"/>
+  <img width="375" height="675" src="resource/home.png"/>
 </p>
 #使用须知
 将CHSocialService文件夹拖拽至工程中,import "CHSocialService.h"文件
