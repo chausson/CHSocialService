@@ -1,5 +1,5 @@
 # CHSocialService
-解耦第三方的快速分享和第三方授权登录的类库，目前版本基于UMengSocial5.0
+快捷使用第三方快速分享和授权登录的类库Demo，目前版本基于UMengSocial5.0
 
 #DEMO 演示
 <p align="left">
