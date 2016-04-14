@@ -2,7 +2,7 @@ PODS:
   - UMengSocial (5.0)
 
 DEPENDENCIES:
-  - UMengSocial
+  - UMengSocial (~> 5.0)
 
 SPEC CHECKSUMS:
   UMengSocial: 48b67179c492a8cf7803fbb0438b8f55432e2fc1
