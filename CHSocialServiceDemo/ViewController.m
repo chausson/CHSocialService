@@ -30,6 +30,9 @@
     }];
 
 }
+- (IBAction)qqShare:(UIButton *)sender {
+    [[CHSocialServiceCenter shareInstance] shareTitle:@"分享" content:@"单个测试分享" imageURL:@"http://p2pguide.sudaotech.com/platform/image/1/20160318/3c896c87-65b6-481d-81ca-1b4a0b6d8dd4/" image:nil urlResource:nil type:CHSocialWeChat controller:self completion:nil];
+}
 - (IBAction)wechatLogin:(UIButton *)sender {
     [[CHSocialServiceCenter shareInstance]loginInAppliactionType:CHSocialWeChat controller:self completion:^(CHSocialResponseData *response) {
         

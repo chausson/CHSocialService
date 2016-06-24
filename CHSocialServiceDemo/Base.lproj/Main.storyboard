@@ -71,10 +71,25 @@
                                     <action selector="qqLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rzH-Zg-Jdk"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ShA-TW-KLV">
+                                <rect key="frame" x="162" y="61" width="276" height="48"/>
+                                <color key="backgroundColor" red="0.83529411760000005" green="0.83529411760000005" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="o0v-xQ-q5S"/>
+                                    <constraint firstAttribute="width" constant="276" id="yiD-HM-Fho"/>
+                                </constraints>
+                                <state key="normal" title="wechatShare">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="qqShare:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nrp-IV-Trq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7M4-js-HB6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8Lf-Qf-5ON"/>
+                            <constraint firstItem="ShA-TW-KLV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="41" id="Oxl-Uu-Yks"/>
                             <constraint firstItem="EeE-CN-ECP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Yja-Lm-8cz"/>
                             <constraint firstItem="G2i-pJ-2TM" firstAttribute="top" secondItem="7M4-js-HB6" secondAttribute="bottom" constant="33" id="ZH0-tK-D8V"/>
                             <constraint firstItem="G2i-pJ-2TM" firstAttribute="leading" secondItem="7M4-js-HB6" secondAttribute="leading" id="Zu1-Lt-0eW"/>
@@ -82,6 +97,7 @@
                             <constraint firstItem="G2i-pJ-2TM" firstAttribute="trailing" secondItem="7M4-js-HB6" secondAttribute="trailing" id="eNx-Ki-8TZ"/>
                             <constraint firstItem="vHA-hY-L9o" firstAttribute="top" secondItem="G2i-pJ-2TM" secondAttribute="bottom" constant="34" id="izV-4R-iMz"/>
                             <constraint firstItem="7M4-js-HB6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="116" id="ldH-GF-SSh"/>
+                            <constraint firstItem="ShA-TW-KLV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lvw-pR-GcN"/>
                             <constraint firstItem="vHA-hY-L9o" firstAttribute="trailing" secondItem="G2i-pJ-2TM" secondAttribute="trailing" id="nYP-Ry-Krg"/>
                             <constraint firstItem="EeE-CN-ECP" firstAttribute="top" secondItem="vHA-hY-L9o" secondAttribute="bottom" constant="27" id="scT-6L-wvV"/>
                         </constraints>

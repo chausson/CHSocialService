@@ -78,7 +78,7 @@ typedef void(^ResultCallback)(BOOL successful) ;
             break;
     }
 }
-- (void)shareTitle:(NSString *)text
+- (void)shareTitle:(NSString *)title
            content:(NSString *)content
          imageURL:(NSString *)imageUrl
             image:(UIImage *)image
@@ -86,16 +86,51 @@ typedef void(^ResultCallback)(BOOL successful) ;
        controller:(UIViewController *)controller
        completion:(void(^)(BOOL successful))finish{
     NSAssert(CHUMAPP_KEY.length > 0, @"UMKEY IS NIL PLEASE SET");
-    UMSocialUrlResource *resource = [[UMSocialUrlResource alloc]initWithSnsResourceType:UMSocialUrlResourceTypeImage url:imageUrl];
+
+    [self configureShareContent:content title:title image:image imageURL:imageUrl urlResource:url completion:finish];
+    [UMSocialSnsService presentSnsIconSheetView:controller
+                                         appKey:CHUMAPP_KEY
+                                      shareText:content
+                                     shareImage:image
+                                shareToSnsNames:[sharesType copy]
+                                       delegate:self];
+    if (finish) {
+        _callback = finish;
+    }
+
+
+}
+- (void)shareTitle:(NSString *)title
+           content:(NSString *)content
+          imageURL:(NSString *)imageUrl
+             image:(UIImage *)image
+       urlResource:(NSString *)url
+              type:(CHSocialType )type
+        controller:(UIViewController *)controller
+        completion:(void(^)(BOOL successful))finish{
+    [self configureShareContent:content title:title image:nil imageURL:imageUrl urlResource:url completion:finish];
+    [[UMSocialControllerService defaultControllerService] setShareText:content shareImage:imageUrl socialUIDelegate:self];
+    [UMSocialSnsPlatformManager getSocialPlatformWithName:[self getSocialPlatformWithName:type]].snsClickHandler(controller,[UMSocialControllerService defaultControllerService],YES);
+    if (finish) {
+        _callback = finish;
+    }
+}
+- (void)configureShareContent:(NSString *)content
+                        title:(NSString *)title
+                        image:(UIImage *)image
+                     imageURL:(NSString *)imageURL
+                  urlResource:(NSString *)url
+                   completion:(void(^)(BOOL successful))finish{
+    UMSocialUrlResource *resource = [[UMSocialUrlResource alloc]initWithSnsResourceType:UMSocialUrlResourceTypeImage url:imageURL];
     UMSocialUrlResource *sinaResource = [[UMSocialUrlResource alloc]initWithSnsResourceType:UMSocialUrlResourceTypeWeb url:url];
     UMSocialWechatSessionData *data = [[UMSocialWechatSessionData alloc]init];
     data.wxMessageType =  UMSocialWXMessageTypeWeb;
     data.url = url;
-    data.title = text;
+    data.title = title;
     data.urlResource = resource;
     UMSocialQQData *qqData = [[UMSocialQQData alloc]init];
     qqData.url = url;
-    qqData.title = text;
+    qqData.title = title;
     qqData.urlResource = resource;
     UMSocialSinaData *sinaData = [[UMSocialSinaData alloc]init];
     sinaData.shareText = content;
@@ -107,18 +142,28 @@ typedef void(^ResultCallback)(BOOL successful) ;
     [UMSocialData defaultData].extConfig.wechatSessionData = data;
     [UMSocialData defaultData].extConfig.wechatTimelineData = (UMSocialWechatTimelineData *)data;
     [UMSocialData defaultData].extConfig.sinaData = sinaData;
-    [UMSocialSnsService presentSnsIconSheetView:controller
-                                         appKey:CHUMAPP_KEY
-                                      shareText:content
-                                     shareImage:image
-                                shareToSnsNames:[sharesType copy]
-                                       delegate:self];
     if (finish) {
         _callback = finish;
     }
-
 }
-
+- (NSString *)getSocialPlatformWithName:(CHSocialType )type{
+    switch (type) {
+        case CHSocialQQ:
+            return UMShareToQQ;
+            break;
+        case CHSocialSina:
+            return UMShareToSina;
+            break;
+        case CHSocialWeChat:
+            return UMShareToWechatSession;
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+    
+}
 - (void)loginInAppliactionType:(CHSocialType)type
                     controller:(UIViewController *)controller
                     completion:(void(^)(CHSocialResponseData *response))finish{

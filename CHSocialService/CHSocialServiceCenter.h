@@ -33,11 +33,22 @@ typedef NS_OPTIONS(NSInteger ,CHSocialType) {
 /*
  * @brief   分享功能api
  */
-- (void)shareTitle:(NSString *)text
+- (void)shareTitle:(NSString *)title
            content:(NSString *)content
           imageURL:(NSString *)imageUrl
              image:(UIImage *)image
        urlResource:(NSString *)url
+        controller:(UIViewController *)controller
+        completion:(void(^)(BOOL successful))finish;
+/*
+ * @brief   单个分享功能api
+ */
+- (void)shareTitle:(NSString *)title
+           content:(NSString *)content
+          imageURL:(NSString *)imageUrl
+             image:(UIImage *)image
+       urlResource:(NSString *)url
+              type:(CHSocialType )type
         controller:(UIViewController *)controller
         completion:(void(^)(BOOL successful))finish;
 /*

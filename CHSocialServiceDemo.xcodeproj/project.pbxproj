@@ -194,6 +194,7 @@
 				TargetAttributes = {
 					0632E3281CA3E409005A58DA = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = SB39U7JNAM;
 					};
 				};
 			};
@@ -401,8 +402,9 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = CHSocialServiceDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cc.baifu.SurfingTV;
+				PRODUCT_BUNDLE_IDENTIFIER = com.weizhen.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -417,8 +419,9 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = CHSocialServiceDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cc.baifu.SurfingTV;
+				PRODUCT_BUNDLE_IDENTIFIER = com.weizhen.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
