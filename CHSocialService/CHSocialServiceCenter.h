@@ -11,6 +11,7 @@
 typedef NS_OPTIONS(NSInteger ,CHSocialType) {
     CHSocialSina, // 新浪微博
     CHSocialWeChat, // 微信
+    CHSocialWeChatTimeLine, // 朋友圈
     CHSocialQQ // QQ
 };
 

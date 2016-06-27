@@ -108,7 +108,7 @@ typedef void(^ResultCallback)(BOOL successful) ;
               type:(CHSocialType )type
         controller:(UIViewController *)controller
         completion:(void(^)(BOOL successful))finish{
-    [self configureShareContent:content title:title image:nil imageURL:imageUrl urlResource:url completion:finish];
+    [self configureShareContent:content title:title image:image imageURL:imageUrl urlResource:url completion:finish];
     [[UMSocialControllerService defaultControllerService] setShareText:content shareImage:imageUrl socialUIDelegate:self];
     [UMSocialSnsPlatformManager getSocialPlatformWithName:[self getSocialPlatformWithName:type]].snsClickHandler(controller,[UMSocialControllerService defaultControllerService],YES);
     if (finish) {
@@ -123,24 +123,30 @@ typedef void(^ResultCallback)(BOOL successful) ;
                    completion:(void(^)(BOOL successful))finish{
     UMSocialUrlResource *resource = [[UMSocialUrlResource alloc]initWithSnsResourceType:UMSocialUrlResourceTypeImage url:imageURL];
     UMSocialUrlResource *sinaResource = [[UMSocialUrlResource alloc]initWithSnsResourceType:UMSocialUrlResourceTypeWeb url:url];
-    UMSocialWechatSessionData *data = [[UMSocialWechatSessionData alloc]init];
-    data.wxMessageType =  UMSocialWXMessageTypeWeb;
-    data.url = url;
-    data.title = title;
-    data.urlResource = resource;
+    UMSocialWechatSessionData *wechatData = [[UMSocialWechatSessionData alloc]init];
+    wechatData.wxMessageType =  UMSocialWXMessageTypeWeb;
+    wechatData.title = title;
+    wechatData.shareText = content;
+    wechatData.shareImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+   // wechatData.urlResource = resource;
+    wechatData.url = url;
     UMSocialQQData *qqData = [[UMSocialQQData alloc]init];
     qqData.url = url;
     qqData.title = title;
+    qqData.shareText = content;
+  //  qqData.shareImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
     qqData.urlResource = resource;
     UMSocialSinaData *sinaData = [[UMSocialSinaData alloc]init];
     sinaData.shareText = content;
     if (image) {
         sinaData.shareImage = image;
+        wechatData.shareImage = image;
+            qqData.shareImage = image;
     }
     sinaData.urlResource = sinaResource;
     [UMSocialData defaultData].extConfig.qqData = qqData;
-    [UMSocialData defaultData].extConfig.wechatSessionData = data;
-    [UMSocialData defaultData].extConfig.wechatTimelineData = (UMSocialWechatTimelineData *)data;
+    [UMSocialData defaultData].extConfig.wechatSessionData = wechatData;
+    [UMSocialData defaultData].extConfig.wechatTimelineData = (UMSocialWechatTimelineData *)wechatData;
     [UMSocialData defaultData].extConfig.sinaData = sinaData;
     if (finish) {
         _callback = finish;
@@ -156,6 +162,9 @@ typedef void(^ResultCallback)(BOOL successful) ;
             break;
         case CHSocialWeChat:
             return UMShareToWechatSession;
+            break;
+        case CHSocialWeChatTimeLine:
+            return UMShareToWechatTimeline;
             break;
             
         default:
